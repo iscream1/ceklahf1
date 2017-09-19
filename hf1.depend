@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1505860395 source:d:\dropbox\bme\7\dekla\cekla\hf1\main.cpp
+	<iostream>
+	"cekla.h"
+
+1505859969 d:\dropbox\bme\7\dekla\cekla\hf1\cekla.h
+	<stdexcept>
+	<string>
+	<iomanip>
+	<sstream>
+	<iostream>
+	<cassert>
+	<cstring>
+	<cassert>
+	<algorithm>
+	<new>
+	<initializer_list>
+
+1505863116 source:d:\dropbox\bme\7\dekla\cekla\ceklahf1\main.cpp
+	<iostream>
+	"cekla.h"
+
+1505859969 d:\dropbox\bme\7\dekla\cekla\ceklahf1\cekla.h
+	<stdexcept>
+	<string>
+	<iomanip>
+	<sstream>
+	<iostream>
+	<cassert>
+	<cstring>
+	<cassert>
+	<algorithm>
+	<new>
+	<initializer_list>
+
