@@ -18,22 +18,20 @@ int convert(const int S, const int A)
 
 list convertx(const list l, const int base)
 {
+    write(l.head());
+    write(l);cout<<endl;
     if (l.head() == 0)
     {
-        return cons(0, nil);
+        return l;
     }
     else
     {
-        write(l.head());
-        write(l);
-        cout<<endl;
-        return cons(l.head(), convertx(
+        return convertx(
                              cons(l.head()/base,
                              cons(
                                   l.head()%base, l.tail()
                                   ))
-                             , base)
-                    );
+                             , base);
     }
 }
 
@@ -45,8 +43,8 @@ list convertx(const list l, const int base)
 int main()
 {
     //cout<<atrendezett(100, 2);
-    //write(convertx(cons(100, nil), 2));
-    convertx(cons(100, nil), 2);
+    write(convertx(cons(100, nil), 2));
+    //convertx(cons(100, nil), 2);
     return 0;
 }
 
