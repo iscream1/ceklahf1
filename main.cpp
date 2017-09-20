@@ -70,17 +70,19 @@ list atrendezo(const list konvertalt)
 int kiszamolox(const list revatrendezett, const int base, const int helyiertek)
 {
     if(length(revatrendezett)==0) return 0;
-    if(helyiertek==0)if(hd(revatrendezett)==0) return kiszamolox(tl(revatrendezett), base, helyiertek+1);
-    return power(hd(revatrendezett)*base, helyiertek)+kiszamolox(tl(revatrendezett), base, helyiertek+1);
+    return hd(revatrendezett)*power(base, helyiertek)+kiszamolox(tl(revatrendezett), base, helyiertek+1);
 }
 
 int kiszamolo(const list atrendezett, const int base)
 {
-    return kiszamolox(nrev(atrendezett), base, 1)/base;
+    return kiszamolox(nrev(atrendezett), base, 0);
 }
 
 int atrendezett(const int S, const int A)
 {
+    cout<<"szam: "<<S<<", "<<A<<"-s szamrendszerben"<<endl;
+    write(tl(convertx(cons(S, nil), A)));cout<<endl;
+    write(atrendezo(tl(convertx(cons(S, nil), A))));cout<<endl;
     return kiszamolo(atrendezo(tl(convertx(cons(S, nil), A))), A);
 }
 
@@ -93,7 +95,8 @@ int main()
     /*write(kiszamolo(atrendezo(
                     convertx(cons(100, nil), 2).tail())
           , 2));*/
-    write(atrendezett(0, 2));
+    //write(atrendezett(0, 2));
+    write(atrendezett(18079236,1000));
 
     return 0;
 }
