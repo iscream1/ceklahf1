@@ -80,9 +80,6 @@ int kiszamolo(const list atrendezett, const int base)
 
 int atrendezett(const int S, const int A)
 {
-    cout<<"szam: "<<S<<", "<<A<<"-s szamrendszerben"<<endl;
-    write(tl(convertx(cons(S, nil), A)));cout<<endl;
-    write(atrendezo(tl(convertx(cons(S, nil), A))));cout<<endl;
     return kiszamolo(atrendezo(tl(convertx(cons(S, nil), A))), A);
 }
 
