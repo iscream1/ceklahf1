@@ -37,14 +37,14 @@ int power(int x, int n)
 //returns a list with the head 0
 list convertx(const list l, const int base)
 {
-    if (l.head() == 0)
+    if (hd(l) == 0)
     {
         return l;
     }
     return convertx(
-                             cons(l.head()/base,
+                             cons(hd(l)/base,
                              cons(
-                                  l.head()%base, l.tail()
+                                  hd(l)%base, tl(l)
                                   ))
                              , base);
 }
@@ -52,14 +52,14 @@ list convertx(const list l, const int base)
 int length(const list l)
 {
     if(l==nil) return 0;
-    return 1+length(l.tail());
+    return 1+length(tl(l));
 }
 
 list atrendezox(const list l, const list plan, const list ps)
 {
     if(length(l)==0) return append(plan, ps);
-    if(length(l)%2==1) return atrendezox(l.tail(), cons(l.head(), plan), ps);
-    return atrendezox(l.tail(), plan, cons(l.head(), ps));
+    if(length(l)%2==1) return atrendezox(tl(l), cons(hd(l), plan), ps);
+    return atrendezox(tl(l), plan, cons(hd(l), ps));
 }
 
 list atrendezo(const list konvertalt)
@@ -70,8 +70,8 @@ list atrendezo(const list konvertalt)
 int kiszamolox(const list revatrendezett, const int base, const int helyiertek)
 {
     if(length(revatrendezett)==0) return 0;
-    if(helyiertek==0&&revatrendezett.head()==0) return kiszamolox(revatrendezett.tail(), base, helyiertek+1);
-    return power(revatrendezett.head()*base, helyiertek)+kiszamolox(revatrendezett.tail(), base, helyiertek+1);
+    if(helyiertek==0)if(hd(revatrendezett)==0) return kiszamolox(tl(revatrendezett), base, helyiertek+1);
+    return power(hd(revatrendezett)*base, helyiertek)+kiszamolox(tl(revatrendezett), base, helyiertek+1);
 }
 
 int kiszamolo(const list atrendezett, const int base)
@@ -81,9 +81,7 @@ int kiszamolo(const list atrendezett, const int base)
 
 int atrendezett(const int S, const int A)
 {
-    write(convertx(cons(S, nil), A).tail());
-    write(atrendezo(convertx(cons(S, nil), A).tail()));
-    return kiszamolo(atrendezo(convertx(cons(S, nil), A).tail()), A);
+    return kiszamolo(atrendezo(tl(convertx(cons(S, nil), A))), A);
 }
 
 int main()
