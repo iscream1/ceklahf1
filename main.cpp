@@ -4,17 +4,6 @@
 
 using namespace std;
 
-int convert(const int S, const int A)
-{
-    if (S == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return (S % A + 10 * convert(S / A, A));
-    }
-}
 //from slide
 list append(const list L1, const list L2)
 {
@@ -26,6 +15,23 @@ list append(const list L1, const list L2)
 list nrev(const list L) {
     if (L == nil) return nil;
     return append(nrev(tl(L)), cons(hd(L), nil));
+}
+
+//from slide
+int sum(const list L) { // az L lista elemeinek összege
+if (L == nil) return 0; // ha L üres, akkor 0,
+else { // különben hd(L) + sum(tl(L))
+const int X = hd(L); // segédváltozókat használhatunk,
+const list T = tl(L); // de csak konstansokat
+return X + sum(T); // rekurzió (ez nem jobbrekurzió!)
+} // Fejtörõ: csak akkor lehet jobbrekurzióvá alakítani, ha
+}
+
+int power(int x, int n)
+{
+    if (n == 0) return 1;
+
+    return x * power(x, n-1);
 }
 
 //returns a list with the head 0
@@ -56,23 +62,41 @@ list atrendezox(const list l, const list plan, const list ps)
     return atrendezox(l.tail(), plan, cons(l.head(), ps));
 }
 
-list atrendezo(const list l)
+list atrendezo(const list konvertalt)
 {
-    return atrendezox(nrev(l), nil, nil);
+    return atrendezox(nrev(konvertalt), nil, nil);
 }
 
-/*int atrendezett(const int S, const int A)
+int kiszamolox(const list revatrendezett, const int base, const int helyiertek)
 {
-    return convertx(cons(S, nil), A);
-}*/
+    if(length(revatrendezett)==0) return 0;
+    if(helyiertek==0&&revatrendezett.head()==0) return kiszamolox(revatrendezett.tail(), base, helyiertek+1);
+    return power(revatrendezett.head()*base, helyiertek)+kiszamolox(revatrendezett.tail(), base, helyiertek+1);
+}
+
+int kiszamolo(const list atrendezett, const int base)
+{
+    return kiszamolox(nrev(atrendezett), base, 1)/base;
+}
+
+int atrendezett(const int S, const int A)
+{
+    write(convertx(cons(S, nil), A).tail());
+    write(atrendezo(convertx(cons(S, nil), A).tail()));
+    return kiszamolo(atrendezo(convertx(cons(S, nil), A).tail()), A);
+}
 
 int main()
 {
     //cout<<atrendezett(100, 2);
-    write(atrendezo(
-                    convertx(cons(100, nil), 2).tail())
-          );
+
     //convertx(cons(100, nil), 2);
+
+    /*write(kiszamolo(atrendezo(
+                    convertx(cons(100, nil), 2).tail())
+          , 2));*/
+    write(atrendezett(0, 2));
+
     return 0;
 }
 
